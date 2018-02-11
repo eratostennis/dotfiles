@@ -12,15 +12,17 @@ endif
  
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-" NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'neomake/neomake'
+NeoBundle 'vim-syntastic/syntastic'
+NeoBundle 'davidhalter/jedi-vim'
 
 " install check
 NeoBundleCheck
@@ -91,16 +93,26 @@ smap <C-j> <Plug>(neosnippet_expand_or_jump)
 nnoremap <silent> <M-Space>ns :NeoSnippetEdit<CR>
 inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>\<Down>"
 
+" python
+let NERDTreeIgnore = ['\.pyc$']
+autocmd! BufEnter,BufWritePost * Neomake
+" let g:neomake_python_enabled_makers = ['python', 'flake8']
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" let g:syntastic_python_checkers = ['python', 'flake8']
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+
 " vim-powerline setting
 let g:Powerline_symbols = 'fancy'
-
-" syntastic setting
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['perl', 'podchecker']
-" let g:syntastic_debug = 1
-" let g:syntastic_mode_map = { 'mode': 'active',
-"     \ 'active_filetypes': ['perl'],
-"     \ 'passive_filetypes': [] }
 
 "ctags用キーバインド
 nnoremap t  <Nop>
