@@ -1,5 +1,6 @@
 #!/bin/sh
 
+ln -s -b -S .bak ~/dotfiles/.vim ~/.vim
 ln -s -b -S .bak ~/dotfiles/.vimrc ~/.vimrc
 ln -s -b -S .bak ~/dotfiles/.vim ~/.vim
 ln -s -b -S .bak ~/dotfiles/.tmux.conf ~/.tmux.conf
