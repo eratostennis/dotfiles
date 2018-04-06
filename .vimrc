@@ -19,7 +19,6 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'neomake/neomake'
 NeoBundle 'vim-syntastic/syntastic'
 NeoBundle 'davidhalter/jedi-vim'
@@ -135,9 +134,4 @@ set fileencodings=utf-8,iso-2022-jp-3,iso-2022-jp,enc-jisx0213,euc-jp,ucs-bom,eu
 " 前回のカーソル位置から再開
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" coffeescript
-" vimにcoffeeファイルタイプを認識させる
-au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-" インデントを設定
-autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
 autocmd FileType cpp        setlocal sw=2 sts=2 ts=2 et
