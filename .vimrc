@@ -22,6 +22,7 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'neomake/neomake'
 NeoBundle 'vim-syntastic/syntastic'
 NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'leafgarland/typescript-vim'
 
 " install check
 NeoBundleCheck
@@ -133,5 +134,5 @@ set fileencodings=utf-8,iso-2022-jp-3,iso-2022-jp,enc-jisx0213,euc-jp,ucs-bom,eu
 
 " 前回のカーソル位置から再開
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
-
+autocmd BufRead,BufNewFile *.ts set filetype=typescript
 autocmd FileType cpp        setlocal sw=2 sts=2 ts=2 et
